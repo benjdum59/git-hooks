@@ -18,3 +18,6 @@ e.g.
 ```bash
 wget -O install-git-hooks.sh  https://raw.github.com/benjdum59/git-hooks/master/install.sh ; bash install-git-hooks.sh commit-msg
 ```
+
+# Hooks workflow
+![Hooks workflow](hooks-workflow.png)
