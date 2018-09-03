@@ -1,7 +1,5 @@
 #!/bin/bash
 
-allHooks=("commit-msg","pre-push" )
-
 ls -a | grep "^\.git$" 2>/dev/null
 if [ $? -ne 0 ];then
   echo "This script only works on the root path of a git repository"
@@ -16,11 +14,12 @@ cd ${target}
 
 hooks=( "$@" )
 if [ ${#hooks[@]} -eq 0 ];then
-  hooks=${allHooks}
+  hooks=("commit-msg" "pre-push")
 fi
 
 for hook in "${hooks[@]}"
 do
+  echo "Downloading ${hook}"
   wget https://raw.github.com/benjdum59/git-hooks/master/${hook}
   chmod +x ${hook}
 done
