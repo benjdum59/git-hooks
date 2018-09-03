@@ -18,15 +18,15 @@
 # This example catches duplicate Signed-off-by lines.
 
 patterns=()
-patterns+=("^(fix|feat): \[..*\] ..*$")
+patterns+=("^(fix|feat|refacto): \[..*\] ..*$")
 patterns+=("^chore: ..*")
 patterns+=("^Merge branch ")
 HEADER=`head -n1 $1`
 
-for i in "${patterns[@]}"
+for pattern in "${patterns[@]}"
 do
-  echo "pattern: $i"
-  if [[ "$HEADER" =~ $i ]]; then
+  echo "pattern: $pattern"
+  if [[ "$HEADER" =~ $pattern ]]; then
     echo "Should work"
     exit 0
   fi
