@@ -1,6 +1,6 @@
 #!/bin/bash
 
-allHooks=("commit-msg")
+allHooks=("commit-msg","pre-push" )
 
 ls -a | grep "^\.git$" 2>/dev/null
 if [ $? -ne 0 ];then

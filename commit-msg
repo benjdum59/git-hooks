@@ -33,9 +33,9 @@ done
 
 echo 'Bad commit message'
 echo '--> For feature, fix and refactoring, commit message needs the following format:'
-echo '    feature: [<Jira number>] <description>'
-echo '    fix: [<Jira number>] <description>'
-echo '    e.g. "fix: [OSAPI-1234] Beautiful fix description"'
+echo '    feature: [<Issue ID>] <description>'
+echo '    fix: [<Issue ID>] <description>'
+echo '    e.g. "fix: [ISSUE-1234] Beautiful fix description"'
 echo '--> For chore, docs, style, perf, tests and build commit message needs the following format'
 echo '    chore: <description>'
 echo '    e.g. "chore: pod install"'
