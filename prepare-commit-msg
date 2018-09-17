@@ -1,0 +1,87 @@
+#!/bin/sh
+#
+# An example hook script to prepare the commit log message.
+# Called by "git commit" with the name of the file that has the
+# commit message, followed by the description of the commit
+# message's source.  The hook's purpose is to edit the commit
+# message file.  If the hook fails with a non-zero status,
+# the commit is aborted.
+#
+# To enable this hook, rename this file to "prepare-commit-msg".
+
+# This hook includes three examples. The first one removes the
+# "# Please enter the commit message..." help message.
+#
+# The second includes the output of "git diff --name-status -r"
+# into the message, just before the "git status" output.  It is
+# commented because it doesn't cope with --amend or with squashed
+# commits.
+#
+# The third example adds a Signed-off-by line to the message, that can
+# still be edited.  This is rarely a good idea.
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+if [ "${COMMIT_SOURCE}" != "" ]; then
+   exit 0
+fi
+
+defaultMessage(){
+	echo "">>${COMMIT_MSG_FILE}
+        echo "">>${COMMIT_MSG_FILE}
+        echo '##### COMMIT MESSAGE RULES #####'>>${COMMIT_MSG_FILE}
+	echo '#--> For feature, fix and refactoring, commit message needs the following format:'>>${COMMIT_MSG_FILE}
+	echo '#    feat: [<Issue ID>] <description>'>>${COMMIT_MSG_FILE}
+	echo '#    fix: [<Issue ID>] <description>'>>${COMMIT_MSG_FILE}
+	echo '#    e.g. "fix: [ISSUE-1234] Beautiful fix description"'>>${COMMIT_MSG_FILE}
+	echo '#    Available keywords: fix|feat|refactor'>>${COMMIT_MSG_FILE}
+	echo '#--> For chore, docs, style, perf, tests and build commit message needs the following format'>>${COMMIT_MSG_FILE}
+	echo '#    chore: <description>'>>${COMMIT_MSG_FILE}
+	echo '#    e.g. "chore: pod install"'>>${COMMIT_MSG_FILE}
+	echo '#    Available keywords: chore|docs|style|perf|test|build'>>${COMMIT_MSG_FILE}
+	echo '#--> For merge commit, message must start with Merge branch'>>${COMMIT_MSG_FILE}
+	echo '#    e.g. "Merge branch test into develop"'>>${COMMIT_MSG_FILE}
+        exit 0
+}
+
+originalMessage=`cat $1`
+echo  ${originalMessage} > /tmp/test
+
+currentBranch=`git rev-parse --abbrev-ref HEAD`
+branchType=`echo ${currentBranch} | awk -F '/' '{ print $1 }'`
+issueNumber=`basename ${currentBranch}`
+
+if ![[ "${issueNumber}"=~"^[a-zA-Z][a-zA-Z]*.*[0-9][0-9]*$" ]]; then
+	issueNumber="<Issue ID>"
+fi
+
+if [[ "${branchType}"=~"^(feat|fix|refactor)$" ]]; then
+	commitType=${branchType}
+elif [[ "${branchType}"=~"^feature$" ]];then
+        commitType="feat"
+elif [[ "${branchType}"=~"^refacto$" ]];then
+	commitType="refactor"
+elif [[ "${branchType}"=~"^(chore|docs|style|perf|test|build)$" ]]; then
+	commitType=${branchType}
+elif [[ "${branchType}"=~"^doc$" ]]; then
+	commitType="docs"
+else
+        echo -n > ${COMMIT_MSG_FILE}
+	defaultMessage	
+fi
+
+if [[ "${commitType}"=~"^(feat|fix|refactor)$" ]]; then
+        message=`echo "${commitType}: [${issueNumber}]"`
+else
+        message=`echo "${commitType}:"`
+fi
+
+cat <<-EOF > ${COMMIT_MSG_FILE}
+	$(echo $message)
+	$(cat ${COMMIT_MSG_FILE})
+EOF
+defaultMessage
+
+
