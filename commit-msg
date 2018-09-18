@@ -32,5 +32,5 @@ do
 done
 
 echo '#Bad commit message'
-cat message/commit-message-format
+cat $(dirname "$0")/message/commit-message-format
 exit 1
