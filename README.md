@@ -30,6 +30,8 @@ Auto feed the commit message based on the branch name. Branch must be named like
 - branch type: chore | docs | doc | style | perf | test | build (Issue ID is optional)
 - issue ID: must start with a letter and end with a digit
 
+To use it, you have to do a git commit with no parameters. It only works with standard editors (like vim if you use git in CLI). Some tools, like Source Tree, do not use standard editor so it won't work.
+
 ## pre-push
 Prevent pushing from develop or master (this should be done in a pull request)
 
