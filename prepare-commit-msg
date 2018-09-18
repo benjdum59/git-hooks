@@ -43,7 +43,7 @@ currentBranch=`git rev-parse --abbrev-ref HEAD`
 branchType=`echo ${currentBranch} | awk -F '/' '{ print $1 }'`
 issueNumber=`basename ${currentBranch}`
 
-if ![[ "${issueNumber}"=~"^[a-zA-Z][a-zA-Z]*.*[0-9][0-9]*$" ]]; then
+if [[ !("${issueNumber}"=~"^[a-zA-Z][a-zA-Z]*.*[0-9][0-9]*$") ]]; then
 	issueNumber="<Issue ID>"
 fi
 
