@@ -32,7 +32,7 @@ defaultMessage(){
 	echo "">>${COMMIT_MSG_FILE}
         echo "">>${COMMIT_MSG_FILE}
         echo '##### COMMIT MESSAGE RULES #####'>>${COMMIT_MSG_FILE}
-        cat message/commit-message-format>>>>${COMMIT_MSG_FILE}
+        cat $(dirname "$0")/message/commit-message-format>>${COMMIT_MSG_FILE}
         exit 0
 }
 

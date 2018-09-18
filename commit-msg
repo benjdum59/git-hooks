@@ -25,12 +25,11 @@ HEADER=`head -n1 $1`
 
 for pattern in "${patterns[@]}"
 do
-  echo "pattern: $pattern"
   if [[ "$HEADER" =~ $pattern ]]; then
     exit 0
   fi
 done
 
-echo '#Bad commit message'
+echo '# Bad commit message'
 cat $(dirname "$0")/message/commit-message-format
 exit 1

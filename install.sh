@@ -8,7 +8,7 @@ fi
 
 target="target-git-hooks"
 
-rm -rf ${target}
+rm -rf ${target} 2>/dev/null
 mkdir ${target}  2>/dev/null
 cd ${target}
 
@@ -25,7 +25,7 @@ cd ..
 
 hooks=( "$@" )
 if [ ${#hooks[@]} -eq 0 ];then
-  hooks=("commit-msg" "pre-push")
+  hooks=("commit-msg" "pre-push" "prepare-commit-msg")
 fi
 
 for hook in "${hooks[@]}"
