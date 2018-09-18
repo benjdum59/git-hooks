@@ -1,0 +1,11 @@
+#--> For feature, fix and refactoring, commit message needs the following format:
+#    feat: [<Issue ID>] <description>
+#    fix: [<Issue ID>] <description>
+#    e.g. "fix: [ISSUE-1234] Beautiful fix description"
+#    Available keywords: fix|feat|refactor
+#--> For chore, docs, style, perf, tests and build commit message needs the following format
+#    chore: <description>
+#    e.g. "chore: pod install"
+#    Available keywords: chore|docs|style|perf|test|build
+#--> For merge commit, message must start with Merge branch
+#    e.g. "Merge branch test into develop"

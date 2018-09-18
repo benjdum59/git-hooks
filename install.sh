@@ -12,6 +12,17 @@ rm -rf ${target}
 mkdir ${target}  2>/dev/null
 cd ${target}
 
+mkdir conf
+mkdir message
+
+#Getting all confs
+
+#Getting all messages
+cd message
+wget https://raw.github.com/benjdum59/git-hooks/master/message/commit-message-format
+cd ..
+
+
 hooks=( "$@" )
 if [ ${#hooks[@]} -eq 0 ];then
   hooks=("commit-msg" "pre-push")

@@ -31,16 +31,6 @@ do
   fi
 done
 
-echo 'Bad commit message'
-echo '--> For feature, fix and refactoring, commit message needs the following format:'
-echo '    feat: [<Issue ID>] <description>'
-echo '    fix: [<Issue ID>] <description>'
-echo '    e.g. "fix: [ISSUE-1234] Beautiful fix description"'
-echo '    Available keywords: fix|feat|refactor'
-echo '--> For chore, docs, style, perf, tests and build commit message needs the following format'
-echo '    chore: <description>'
-echo '    e.g. "chore: pod install"'
-echo '    Available keywords: chore|docs|style|perf|test|build'
-echo '--> For merge commit, message must start with Merge branch '
-echo '    e.g. "Merge branch test into develop"'
+echo '#Bad commit message'
+cat message/commit-message-format
 exit 1

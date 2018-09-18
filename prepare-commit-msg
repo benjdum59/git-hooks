@@ -32,17 +32,7 @@ defaultMessage(){
 	echo "">>${COMMIT_MSG_FILE}
         echo "">>${COMMIT_MSG_FILE}
         echo '##### COMMIT MESSAGE RULES #####'>>${COMMIT_MSG_FILE}
-	echo '#--> For feature, fix and refactoring, commit message needs the following format:'>>${COMMIT_MSG_FILE}
-	echo '#    feat: [<Issue ID>] <description>'>>${COMMIT_MSG_FILE}
-	echo '#    fix: [<Issue ID>] <description>'>>${COMMIT_MSG_FILE}
-	echo '#    e.g. "fix: [ISSUE-1234] Beautiful fix description"'>>${COMMIT_MSG_FILE}
-	echo '#    Available keywords: fix|feat|refactor'>>${COMMIT_MSG_FILE}
-	echo '#--> For chore, docs, style, perf, tests and build commit message needs the following format'>>${COMMIT_MSG_FILE}
-	echo '#    chore: <description>'>>${COMMIT_MSG_FILE}
-	echo '#    e.g. "chore: pod install"'>>${COMMIT_MSG_FILE}
-	echo '#    Available keywords: chore|docs|style|perf|test|build'>>${COMMIT_MSG_FILE}
-	echo '#--> For merge commit, message must start with Merge branch'>>${COMMIT_MSG_FILE}
-	echo '#    e.g. "Merge branch test into develop"'>>${COMMIT_MSG_FILE}
+        cat message/commit-message-format>>>>${COMMIT_MSG_FILE}
         exit 0
 }
 
