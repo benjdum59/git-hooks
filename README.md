@@ -1,6 +1,6 @@
 # git-hooks
 
-The aim of this repository is to store common git hooks. In addition, this repository offer a way to install them locally using only an url.
+The aim of this repository is to store common git hooks. In addition, this repository offers a way to install them locally using only an url.
 
 # Simple installation
 At the root of your local git repository, run the following command:
