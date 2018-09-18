@@ -37,6 +37,6 @@ done
 
 cd ..
 
-cp -rf ${target}/* .git/hooks
+\cp -rf ${target}/* .git/hooks
 
 rm -rf ${target}
