@@ -42,27 +42,27 @@ echo  ${originalMessage} > /tmp/test
 currentBranch=`git rev-parse --abbrev-ref HEAD`
 branchType=`echo ${currentBranch} | awk -F '/' '{ print $1 }'`
 issueNumber=`basename ${currentBranch}`
-
-if [[ !("${issueNumber}"=~"^[a-zA-Z][a-zA-Z]*.*[0-9][0-9]*$") ]]; then
+if [[ "${issueNumber}" =~ ^[a-zA-Z][a-zA-Z]*.*[0-9][0-9]*$ ]]; then
+        echo .>/dev/null
+else
 	issueNumber="<Issue ID>"
 fi
 
-if [[ "${branchType}"=~"^(feat|fix|refactor)$" ]]; then
+if [[ "${branchType}" =~ ^(feat|fix|refactor)$ ]]; then
 	commitType=${branchType}
-elif [[ "${branchType}"=~"^feature$" ]];then
+elif [[ "${branchType}" =~ ^feature$ ]];then
         commitType="feat"
-elif [[ "${branchType}"=~"^refacto$" ]];then
+elif [[ "${branchType}" =~ ^refacto$ ]];then
 	commitType="refactor"
-elif [[ "${branchType}"=~"^(chore|docs|style|perf|test|build)$" ]]; then
+elif [[ "${branchType}" =~ ^(chore|docs|style|perf|test|build)$ ]]; then
 	commitType=${branchType}
-elif [[ "${branchType}"=~"^doc$" ]]; then
+elif [[ "${branchType}" =~ ^doc$ ]]; then
 	commitType="docs"
 else
-        echo -n > ${COMMIT_MSG_FILE}
 	defaultMessage	
 fi
 
-if [[ "${commitType}"=~"^(feat|fix|refactor)$" ]]; then
+if [[ "${commitType}" =~ ^(feat|fix|refactor)$ ]]; then
         message=`echo "${commitType}: [${issueNumber}]"`
 else
         message=`echo "${commitType}:"`
