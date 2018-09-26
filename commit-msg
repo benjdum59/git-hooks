@@ -18,8 +18,8 @@
 # This example catches duplicate Signed-off-by lines.
 
 patterns=()
-patterns+=("^(fix|feat|refactor): \[..*\] ..*$")
-patterns+=("^(chore|docs|style|perf|test|build): ..*")
+patterns+=("^(fix|feat|refactor): ?\[..*\] ?..*$")
+patterns+=("^(chore|docs|style|perf|test|build): ?..*")
 patterns+=("^Merge branch ")
 HEADER=`head -n1 $1`
 
